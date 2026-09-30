@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kakao Moment — Cokelat Wafer Renyah</title>
+<meta name="description" content="Cokelat wafer renyah dan lembut. Pesan online, diantar ke rumahmu.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Great+Vibes&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#1a120d;--bg2:#241a13;--choc:#8b4a2b;--choc2:#5a2e1a;--gold:#e0a93f;--cream:#eadfcf;--ink:#2b1d14;--red:#c8372d;
+--sans:'Jost',system-ui,sans-serif;--serif:'Cormorant Garamond',Georgia,serif;--script:'Great Vibes',cursive}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{background:var(--bg);color:var(--cream);font:400 16px/1.7 var(--sans);overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.wrap{width:min(1120px,92%);margin:auto}
+.track{letter-spacing:.28em;text-transform:uppercase;font-size:.8rem}
+
+/* Scroll reveal */
+.reveal{opacity:0;transform:translateY(38px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
+.reveal.left{transform:translateX(-50px)}.reveal.right{transform:translateX(50px)}
+.reveal.in{opacity:1;transform:none}
+
+/* Nav */
+nav{position:fixed;inset:0 0 auto;z-index:50;transition:background .4s,padding .4s;padding:20px 0}
+nav.solid{background:rgba(26,18,13,.92);backdrop-filter:blur(10px);padding:12px 0}
+nav .wrap{display:flex;justify-content:space-between;align-items:center}
+.brand{font:600 1.5rem var(--serif);letter-spacing:.06em}
+.brand i{font-family:var(--script);font-style:normal;color:var(--gold);font-size:1.7rem;margin-left:4px}
+.cartbtn{border:1px solid var(--gold);color:var(--gold);padding:8px 18px;border-radius:40px;font-size:.85rem;background:none;cursor:pointer;transition:.3s}
+.cartbtn:hover{background:var(--gold);color:var(--ink)}
+.cartbtn b{display:inline-block;min-width:22px;height:22px;line-height:22px;border-radius:50%;background:var(--gold);color:var(--ink);font-size:.75rem;text-align:center;margin-left:6px}
+
+/* Hero */
+.hero{min-height:100vh;display:grid;place-items:center;text-align:center;padding:120px 0 60px;position:relative;overflow:hidden;
+background:radial-gradient(ellipse 50% 60% at 60% 20%,rgba(224,169,63,.22),transparent 70%),var(--bg)}
+.hero h1{font:400 clamp(.9rem,2.2vw,1.2rem)/1 var(--sans);letter-spacing:.35em;margin-bottom:6px}
+.hero .script{font:400 clamp(3rem,9vw,6rem)/1.1 var(--script);color:var(--gold)}
+.hero p.sub{max-width:520px;margin:14px auto 0;color:#cbbba6;font-weight:300}
+.bar{position:relative;height:clamp(150px,24vw,250px);margin:40px auto 30px;width:min(760px,100%);animation:float 6s ease-in-out infinite}
+.half{position:absolute;top:14%;width:58%;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.half svg{width:100%;height:auto;display:block;overflow:visible;filter:drop-shadow(0 24px 22px rgba(0,0,0,.55))}
+.half.l{left:-2%;transform:rotate(-6deg) translate(-22px,8px);animation:snapL 1.6s .3s cubic-bezier(.2,.8,.2,1) both}
+.half.r{right:-2%;transform:rotate(6deg) translate(22px,8px);animation:snapR 1.6s .3s cubic-bezier(.2,.8,.2,1) both}
+.half.r svg{transform:scaleX(-1)}
+.glow{position:absolute;left:50%;top:48%;width:120px;height:120px;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(255,200,110,.9),transparent 70%);filter:blur(12px);animation:pulse 3s infinite}
+.crumb{position:absolute;width:var(--s);height:var(--s);background:var(--choc);border-radius:3px;animation:crumb var(--t) ease-in-out infinite;left:var(--x);top:var(--y);opacity:.85}
+@keyframes float{50%{transform:translateY(-14px)}}
+@keyframes snapL{from{transform:rotate(0) translateX(0)}}
+@keyframes snapR{from{transform:rotate(0) translateX(0)}}
+@keyframes pulse{50%{opacity:.5;transform:translate(-50%,-50%) scale(1.3)}}
+@keyframes crumb{50%{transform:translateY(-22px) rotate(90deg)}}
+.chips{display:flex;justify-content:center;flex-wrap:wrap;gap:12px 34px;margin-top:26px;padding-top:26px;border-top:1px solid rgba(234,223,207,.15)}
+.chips span{font-size:.78rem;display:flex;align-items:center;gap:10px}
+.chips span::before{content:"";width:30px;height:30px;border:1px solid var(--cream);border-radius:50%;background:radial-gradient(circle,var(--gold) 0 3px,transparent 4px)}
+.btn{display:inline-block;background:var(--gold);color:var(--ink);padding:14px 34px;border-radius:40px;font-weight:500;border:0;cursor:pointer;font:500 .9rem var(--sans);letter-spacing:.12em;text-transform:uppercase;transition:transform .3s,box-shadow .3s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(224,169,63,.35)}
+.btn:disabled{opacity:.5;cursor:wait;transform:none}
+
+/* Simple pleasures (terang) */
+.light{background:linear-gradient(120deg,#efe3d2,#d9c3a8);color:var(--ink);padding:110px 0;overflow:hidden}
+.light .wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:50px;align-items:center}
+.light h2{font:600 clamp(2.2rem,5vw,3.6rem)/1.15 var(--serif);letter-spacing:.14em;text-transform:uppercase}
+.light small{display:block;margin-top:10px;font-size:.85rem;letter-spacing:.2em;text-transform:uppercase}
+.light hr{width:44px;border:0;border-top:2px solid var(--ink);margin:18px 0}
+.light p{max-width:380px}
+.stack{position:relative;height:300px}
+.stack svg{position:absolute;width:72%;height:auto;overflow:visible;filter:drop-shadow(0 18px 16px rgba(60,30,10,.4));transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.stack .p1{left:0;bottom:2%;transform:rotate(-4deg)}.stack .p2{right:0;bottom:24%;transform:rotate(5deg) scaleX(-1)}.stack .p3{left:12%;top:0;transform:rotate(-9deg)}
+.stack:hover .p3{transform:rotate(-12deg) translateY(-8px)}
+
+/* Produk */
+section.sec{padding:110px 0}
+.head{text-align:center;margin-bottom:56px}
+.head .script{font:400 2.4rem var(--script);color:var(--gold)}
+.head h2{font:600 clamp(2rem,4.5vw,3rem)/1.2 var(--serif);letter-spacing:.06em}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:28px}
+.card{background:linear-gradient(180deg,var(--bg2),#1d150f);border:1px solid rgba(234,223,207,.1);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:opacity .9s ease var(--d,0s),transform .9s cubic-bezier(.2,.7,.2,1) var(--d,0s),border-color .5s,box-shadow .5s}
+.card:hover{transition:transform .4s,border-color .5s,box-shadow .5s;transform:translateY(-8px);border-color:rgba(224,169,63,.5);box-shadow:0 24px 44px rgba(0,0,0,.45)}
+.pimg{height:190px;display:grid;place-items:center;background:radial-gradient(circle at 50% 40%,#3a2819,var(--bg2));overflow:hidden}
+.pimg img{width:100%;height:100%;object-fit:cover;transition:transform .8s}
+.card:hover .pimg img{transform:scale(1.08)}
+.mini{width:190px;height:auto;overflow:visible;filter:drop-shadow(0 12px 12px rgba(0,0,0,.55));transform:rotate(-4deg);transition:transform .6s}
+.card:hover .mini{transform:rotate(0) scale(1.1)}
+.cbody{padding:22px;display:flex;flex-direction:column;gap:6px;flex:1}
+.cbody h3{font:600 1.45rem var(--serif)}
+.cbody p{font-size:.9rem;color:#b9a892;font-weight:300;flex:1}
+.row{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
+.price{color:var(--gold);font-weight:500}
+.add{background:none;border:1px solid var(--gold);color:var(--gold);border-radius:30px;padding:7px 18px;cursor:pointer;font:400 .82rem var(--sans);transition:.3s}
+.add:hover:not(:disabled){background:var(--gold);color:var(--ink)}
+.add:disabled{opacity:.4;cursor:not-allowed}
+.msg{grid-column:1/-1;text-align:center;color:#b9a892}
+.skel{height:360px;border-radius:16px;background:linear-gradient(100deg,var(--bg2) 30%,#33241a 50%,var(--bg2) 70%);background-size:300% 100%;animation:sh 1.4s infinite}
+@keyframes sh{to{background-position:-100% 0}}
+
+/* Banner */
+.banner{padding:120px 0;text-align:left;background:radial-gradient(circle at 80% 20%,rgba(224,169,63,.12),transparent 50%),#120c08;border-block:1px solid rgba(234,223,207,.1)}
+.banner h2{font:500 clamp(2.4rem,7vw,5rem)/1.15 var(--sans);letter-spacing:.14em;text-transform:uppercase}
+.banner h2 span{display:block}.banner h2 span:last-child{color:var(--gold)}
+.banner hr{width:44px;border:0;border-top:1px solid var(--cream);margin-top:26px}
+
+/* Pesan */
+.order{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.box{background:var(--bg2);border:1px solid rgba(234,223,207,.1);border-radius:16px;padding:30px}
+.box h3{font:600 1.6rem var(--serif);margin-bottom:16px}
+.item{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid rgba(234,223,207,.1);animation:pop .4s}
+@keyframes pop{from{opacity:0;transform:translateX(-14px)}}
+.qty{display:flex;align-items:center;gap:10px}
+.qty button{width:28px;height:28px;border-radius:50%;border:1px solid var(--gold);background:none;color:var(--gold);cursor:pointer;font-size:1rem}
+.total{display:flex;justify-content:space-between;font-size:1.2rem;margin-top:18px;color:var(--gold);font-weight:500}
+label{display:block;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;margin:14px 0 6px;color:#b9a892}
+input,textarea{width:100%;background:#150e0a;border:1px solid rgba(234,223,207,.18);border-radius:10px;padding:12px 14px;color:var(--cream);font:inherit;transition:border-color .3s}
+input:focus,textarea:focus{outline:0;border-color:var(--gold)}
+form .btn{margin-top:22px;width:100%}
+.note{margin-top:14px;font-size:.9rem;min-height:1.4em}.ok{color:#8fd19e}.err{color:#ff8f86}
+
+/* Penutup */
+.final{text-align:center;padding:100px 0 50px;background:linear-gradient(180deg,var(--bg),#2a150d)}
+.final .script{font:400 clamp(2.4rem,6vw,4rem) var(--script);color:var(--red)}
+footer{text-align:center;padding:28px 0;font-size:.8rem;color:#8b7a66;letter-spacing:.14em;background:#2a150d}
+
+@media(max-width:820px){.light .wrap,.order{grid-template-columns:1fr}.stack{height:240px}.light{padding:80px 0}section.sec,.banner{padding:80px 0}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+<linearGradient id="gT" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c47a4a"/><stop offset="1" stop-color="#8b4a2b"/></linearGradient>
+<linearGradient id="gF" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#74391f"/><stop offset="1" stop-color="#3d1c0e"/></linearGradient>
+<linearGradient id="gE" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6e3520"/><stop offset="1" stop-color="#47220f"/></linearGradient>
+<linearGradient id="gW" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f8d47c"/><stop offset="1" stop-color="#d49a33"/></linearGradient>
+<g id="bar">
+<polygon points="66,74 346,44 346,80 66,110" fill="url(#gF)"/>
+<polygon points="300,20 346,44 346,80 300,56" fill="url(#gE)"/>
+<polygon points="305.5,29.4 340.5,47.6 340.5,70.6 305.5,52.4" fill="url(#gW)"/>
+<g fill="#9a5f1a" opacity=".85"><polygon points="305.5,34.4 340.5,52.6 340.5,54.1 305.5,35.9"/><polygon points="305.5,39.8 340.5,58 340.5,59.5 305.5,41.3"/><polygon points="305.5,45.2 340.5,63.4 340.5,64.9 305.5,46.7"/></g>
+<g fill="url(#gT)" stroke="#4a2411" stroke-width="1.4" stroke-linejoin="round">
+<polygon points="20,50 300,20 311.5,26 31.5,56"/><polygon points="31.5,56 311.5,26 323,32 43,62"/>
+<polygon points="43,62 323,32 334.5,38 54.5,68"/><polygon points="54.5,68 334.5,38 346,44 66,74"/></g>
+<path d="M22,50 L300,20.5 M66,74.6 L346,44.6" stroke="#fff" stroke-opacity=".22" stroke-width="1.2" fill="none"/>
+</g></defs></svg>
+
+<nav id="nav"><div class="wrap">
+  <a href="#" class="brand">Kakao<i>Moment</i></a>
+  <button class="cartbtn" id="goCart" aria-label="Lihat keranjang">Keranjang <b id="count">0</b></button>
+</div></nav>
+
+<header class="hero">
+  <div class="wrap">
+    <h1 class="reveal track">Bukan sekadar jeda,</h1>
+    <div class="script reveal" style="--d:.15s">Ini momenmu.</div>
+    <div class="bar" aria-hidden="true">
+      <div class="half l"><svg viewBox="0 0 360 120"><use href="#bar"/></svg></div><div class="half r"><svg viewBox="0 0 360 120"><use href="#bar"/></svg></div><div class="glow"></div>
+      <i class="crumb" style="--s:14px;--x:8%;--y:14%;--t:5s"></i><i class="crumb" style="--s:10px;--x:88%;--y:10%;--t:6s"></i>
+      <i class="crumb" style="--s:12px;--x:30%;--y:2%;--t:7s"></i><i class="crumb" style="--s:9px;--x:70%;--y:86%;--t:5.5s"></i>
+      <i class="crumb" style="--s:11px;--x:16%;--y:80%;--t:6.5s"></i>
+    </div>
+    <p class="sub reveal" style="--d:.3s">Wafer renyah berlapis cokelat lembut. Dibuat untuk jeda kecil yang layak dinikmati.</p>
+    <div class="chips reveal" style="--d:.4s"><span class="track">Wafer renyah</span><span class="track">Cokelat lembut</span><span class="track">Pure delight</span></div>
+    <p class="reveal" style="margin-top:34px;--d:.5s"><a class="btn" href="#produk">Lihat produk</a></p>
+  </div>
+</header>
+
+<section class="light">
+  <div class="wrap">
+    <div class="reveal left">
+      <h2>Simple<br>pleasures.</h2>
+      <hr>
+      <small>Made perfect.</small>
+      <p style="margin-top:22px">Bahan pilihan, wafer dipanggang tipis, cokelat dilelehkan perlahan. Sederhana, tapi selalu pas.</p>
+    </div>
+    <div class="stack reveal right" aria-hidden="true"><svg class="p3" viewBox="0 0 360 120"><use href="#bar"/></svg><svg class="p1" viewBox="0 0 360 120"><use href="#bar"/></svg><svg class="p2" viewBox="0 0 360 120"><use href="#bar"/></svg></div>
+  </div>
+</section>
+
+<section class="sec" id="produk">
+  <div class="wrap">
+    <div class="head reveal"><div class="script">Pilih favoritmu</div><h2>Koleksi Cokelat</h2></div>
+    <div class="grid" id="products"><div class="skel"></div><div class="skel"></div><div class="skel"></div></div>
+  </div>
+</section>
+
+<section class="banner">
+  <div class="wrap"><h2><span class="reveal">Renyah.</span><span class="reveal" style="--d:.15s">Lembut.</span><span class="reveal" style="--d:.3s">Menggoda.</span></h2><hr class="reveal" style="--d:.4s"></div>
+</section>
+
+<section class="sec" id="pesan">
+  <div class="wrap">
+    <div class="head reveal"><div class="script">Tinggal satu langkah</div><h2>Pesanan Kamu</h2></div>
+    <div class="order">
+      <div class="box reveal left"><h3>Keranjang</h3><div id="cart"></div><div class="total"><span>Total</span><span id="total">Rp 0</span></div></div>
+      <div class="box reveal right"><h3>Data pengiriman</h3>
+        <form id="form" novalidate>
+          <label for="nama">Nama</label><input id="nama" name="nama" autocomplete="name" required>
+          <label for="wa">Nomor WhatsApp</label><input id="wa" name="wa" inputmode="tel" autocomplete="tel" placeholder="08123456789" required>
+          <label for="alamat">Alamat lengkap</label><textarea id="alamat" name="alamat" rows="3" autocomplete="street-address" required></textarea>
+          <label for="catatan">Catatan (opsional)</label><input id="catatan" name="catatan">
+          <button class="btn" id="send" type="submit">Kirim pesanan</button>
+          <div class="note" id="note" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap reveal"><p class="track" style="margin-bottom:8px">Kapan saja. Di mana saja.</p><div class="script">Kakao Moment.</div></div>
+</section>
+<footer>AMBIL JEDA, NIKMATI KAKAO MOMENT.</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
